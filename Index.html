@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1e293b">
+    
+    <title>Viral Apology Form Generator | Cricket & Sports Meme Maker</title>
+    <meta name="description" content="Create official apology forms for cricket players, teams, and celebrities. The best viral meme generator for Twitter and Instagram. Free & Fast.">
+    <meta name="keywords" content="apology form generator, cricket meme maker, babar azam apology form, virat kohli apology form, sports meme generator, viral twitter memes, ipl meme maker">
+    <meta name="author" content="MemePro Tools">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- PREMIUM DARK/MODERN THEME --- */
+        :root {
+            --bg-body: #0f172a;       /* Dark Navy Background */
+            --bg-card: #1e293b;       /* Lighter Card */
+            --primary: #3b82f6;       /* Bright Blue */
+            --text-main: #f8fafc;     /* White text */
+            --text-muted: #94a3b8;    /* Grey text */
+            --border: #334155;
+            --paper: #ffffff;         /* Paper Color */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%; padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: sticky; top: 0; z-index: 50;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary); }
+
+        /* AD SPACES */
+        .ad-container {
+            width: 100%; display: flex; justify-content: center; margin: 20px 0;
+            min-height: 90px;
+        }
+        .ad-box { background: #1e293b; border: 1px dashed #334155; display: flex; align-items: center; justify-content: center; }
+
+        /* MAIN LAYOUT */
+        .main-wrapper {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+            width: 100%; max-width: 1200px; padding: 1rem;
+        }
+
+        /* LEFT: EDITOR */
+        .editor-panel {
+            flex: 1; min-width: 300px;
+            background: var(--bg-card);
+            padding: 2rem; border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.3);
+        }
+
+        h2 { font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+
+        .input-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+        
+        input[type="text"], input[type="date"] {
+            width: 100%; padding: 0.8rem;
+            background: #0f172a; border: 1px solid var(--border);
+            color: white; border-radius: 8px; font-size: 1rem;
+            outline: none; transition: 0.2s;
+        }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
+
+        .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+        .checkbox-item {
+            display: flex; align-items: center; gap: 10px;
+            background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid var(--border);
+            cursor: pointer; transition: 0.2s;
+        }
+        .checkbox-item:hover { border-color: var(--text-muted); }
+        .checkbox-item input { accent-color: var(--primary); width: 18px; height: 18px; }
+
+        /* RIGHT: PREVIEW */
+        .preview-panel {
+            flex: 1; min-width: 300px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* The Canvas (Paper Look) */
+        canvas {
+            width: 100%; max-width: 500px; height: auto;
+            background: white;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* BUTTONS */
+        .btn-download {
+            width: 100%; max-width: 500px;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), #2563eb);
+            color: white; border: none; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 800; text-transform: uppercase;
+            cursor: pointer; transition: 0.2s;
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.6); }
+        .btn-download:active { transform: scale(0.98); }
+
+        /* FOOTER */
+        .seo-text {
+            max-width: 800px; text-align: center; font-size: 0.8rem; color: var(--text-muted);
+            margin: 3rem auto; line-height: 1.6; padding: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Meme<span>Gen</span></div>
+    </nav>
+
+    <div class="ad-container">
+        <div class="ad-box" style="width: 728px; height: 90px;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'da1a352c776635fa7984cd1fb95c4041',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/da1a352c776635fa7984cd1fb95c4041/invoke.js"></script>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        
+        <div class="editor-panel">
+            <h2>📝 Fill Details</h2>
+            
+            <div class="input-group">
+                <label>Apologizing To (Player/Team Name)</label>
+                <input type="text" id="targetName" placeholder="e.g. Babar Azam, Zimbabwe" maxlength="25">
+            </div>
+
+            <div class="input-group">
+                <label>Reason for Apology (Select One)</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="radio" name="reason" value="I wasn't familiar with your game" checked>
+                        I wasn't familiar with your game
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="radio" name="reason" value="I listened to the haters & media">
+                        I listened to the haters & media
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="radio" name="reason" value="I thought you were finished">
+                        I thought you were finished
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="radio" name="reason" value="I was jealous of your aura">
+                        I was jealous of your aura
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="radio" name="reason" value="I wanted likes on Twitter">
+                        I wanted likes on Twitter
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Signed By (Your Name)</label>
+                <input type="text" id="signerName" placeholder="e.g. A Cricket Fan" maxlength="20">
+            </div>
+
+            <div class="input-group">
+                <label>Date</label>
+                <input type="date" id="datePicker">
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <h2>🖼️ Live Preview</h2>
+            <canvas id="memeCanvas" width="500" height="600"></canvas>
+            
+            <button class="btn-download" id="downloadBtn">
+                <span>⬇️ Download Image</span>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="ad-container">
+        <div class="ad-box" style="width: 300px; height: 250px;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'eea17f69018ec26e6e52c77738858670',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/eea17f69018ec26e6e52c77738858670/invoke.js"></script>
+        </div>
+    </div>
+
+    <div class="seo-text">
+        <p>Use this <strong>Viral Apology Form Generator</strong> to create funny memes for Cricket, Football, and Gaming. The ultimate <strong>Babar Azam Apology Form</strong> and <strong>Sports Meme Maker</strong>. Perfect for Twitter, Reddit, and Instagram stories.</p>
+    </div>
+
+    <script type='text/javascript' src='//pl28120871.effectivegatecpm.com/b8/2a/fe/b82afee8cc534f12fba12741bfb629a1.js'></script>
+
+    <script>
+        // 💰 DIRECT LINK AD URL
+        const DIRECT_LINK = "https://www.effectivegatecpm.com/wtv8888v?key=d837f9dc7c48bf7b0d830d9f0d04a531";
+
+        // Canvas Setup
+        const canvas = document.getElementById('memeCanvas');
+        const ctx = canvas.getContext('2d');
+        const targetInput = document.getElementById('targetName');
+        const signerInput = document.getElementById('signerName');
+        const dateInput = document.getElementById('datePicker');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const reasons = document.getElementsByName('reason');
+
+        // Set Today's Date Default
+        dateInput.valueAsDate = new Date();
+
+        function drawForm() {
+            // 1. Draw Paper Background
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Draw Borders (Official Look)
+            ctx.strokeStyle = "#000000";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(20, 20, 460, 560);
+            ctx.lineWidth = 1;
+            ctx.strokeRect(25, 25, 450, 550);
+
+            // 3. Header
+            ctx.fillStyle = "#000000";
+            ctx.font = "bold 28px 'Courier Prime', monospace";
+            ctx.textAlign = "center";
+            ctx.fillText("OFFICIAL APOLOGY FORM", 250, 80);
+            
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(50, 90);
+            ctx.lineTo(450, 90);
+            ctx.stroke();
+
+            // 4. To Section
+            ctx.font = "bold 18px 'Courier Prime', monospace";
+            ctx.textAlign = "left";
+            ctx.fillText("TO: " + (targetInput.value.toUpperCase() || "PLAYER NAME"), 50, 140);
+            
+            // 5. Body Text
+            ctx.font = "16px 'Courier Prime', monospace";
+            ctx.fillText("I owe you an apology because:", 50, 190);
+
+            // 6. Draw Reasons (Checkboxes)
+            let yPos = 230;
+            reasons.forEach(r => {
+                // Draw Box
+                ctx.strokeRect(50, yPos - 15, 20, 20);
+                
+                // Draw Checkmark if selected
+                if(r.checked) {
+                    ctx.font = "bold 20px Arial";
+                    ctx.fillText("✓", 53, yPos + 3);
+                }
+
+                // Draw Text
+                ctx.font = "14px 'Courier Prime', monospace";
+                ctx.fillText(r.value, 85, yPos);
+                yPos += 40;
+            });
+
+            // 7. Signature Section (Bottom)
+            ctx.beginPath();
+            ctx.moveTo(50, 500);
+            ctx.lineTo(250, 500);
+            ctx.stroke();
+
+            ctx.font = "16px 'Courier Prime', monospace";
+            ctx.fillText("SIGNED: " + (signerInput.value || "Your Name"), 50, 525);
+            ctx.fillText("DATE: " + dateInput.value, 300, 525);
+        }
+
+        // Live Update Listeners
+        targetInput.addEventListener('input', drawForm);
+        signerInput.addEventListener('input', drawForm);
+        dateInput.addEventListener('input', drawForm);
+        reasons.forEach(r => r.addEventListener('change', drawForm));
+
+        // Initial Draw
+        // Load fonts first then draw
+        document.fonts.ready.then(drawForm);
+
+        // 💰 DOWNLOAD + AD LOGIC
+        downloadBtn.addEventListener('click', () => {
+            // 1. Open Ad (New Tab)
+            if(DIRECT_LINK) {
+                window.open(DIRECT_LINK, '_blank');
+            }
+
+            // 2. Download Image (Delay slightly for smooth UX)
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.download = `Apology_To_${targetInput.value || 'Someone'}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            }, 500);
+        });
+
+    </script>
+</body>
+</html>
