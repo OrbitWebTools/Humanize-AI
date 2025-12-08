@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://orbitwebtools.github.io/humanize-ai-text/sitemap.xml
+Sitemap: https://orbitwebtools.github.io/Free-Unlimited-Humanize-AI-Text-Bypass-Turnitin-2025/sitemap.xml
