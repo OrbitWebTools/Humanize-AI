@@ -1,18 +1,19 @@
 {
-  "name": "OrbitWebTools AI Humanizer",
-  "short_name": "HumanizeAI",
-  "start_url": "https://orbitwebtools.github.io/humanize-ai-text/",
+  "name": "Free AI Humanizer",
+  "short_name": "AI Humanizer",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#f8fafc",
   "theme_color": "#4f46e5",
+  "scope": "./",
   "icons": [
     {
-      "src": "https://orbitwebtools.github.io/humanize-ai-text/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://orbitwebtools.github.io/humanize-ai-text/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
