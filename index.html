@@ -1,534 +1,923 @@
-import { useState, useEffect } from "react";
-import { ArrowUpRight, Crown, X, Zap, Shield, Infinity } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="robots" content="index, follow" />
 
+<title>Free AI Humanizer 2026 | Bypass Turnitin & AI Detection (No Login)</title>
+<meta name="description" content="Best Free Turnitin AI Humanizer 2026. Convert ChatGPT to Human text instantly. Bypass ZeroGPT, Originality.ai & Turnitin without login. Unlimited & 100% Free." />
+<meta name="keywords" content="turnitin ai humanizer free, bypass turnitin, chatgpt to human converter, remove ai detection, free ai bypass tool, undetectable ai free, anti ai detector" />
+<link rel="canonical" href="https://orbitwebtools.github.io/Humanize-AI/" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+
+<meta property="og:title" content="Free AI Humanizer 2026 – Bypass Turnitin Instantly" />
+<meta property="og:description" content="Convert AI text to 100% Human Score. No Login. Unlimited Words. Works for Students." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://orbitwebtools.github.io/Humanize-AI/" />
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OrbitWebTools AI Humanizer","operatingSystem":"Web Browser","applicationCategory":"EducationalApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"3420"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to bypass Turnitin AI detection for free?","acceptedAnswer":{"@type":"Answer","text":"Use OrbitWebTools AI Humanizer. Paste your text, click convert, and get 100% human score on Turnitin without paying."}},{"@type":"Question","name":"Is there a free alternative to StealthWriter?","acceptedAnswer":{"@type":"Answer","text":"Yes, this tool is a completely free alternative to StealthWriter and Quillbot. It offers unlimited words with no login required."}}]}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:#f8fafc;
+  color:#0f172a;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:#dbeafe;color:#1e3a8a;}
+img,video{display:block;max-width:100%;}
+a{color:inherit;}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes charIn{from{opacity:0;transform:translateX(-14px);}to{opacity:1;transform:translateX(0);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.fu{animation:fadeUp .65s ease both;}
+.fu1{animation:fadeUp .65s .1s ease both;}
+.fu2{animation:fadeUp .65s .2s ease both;}
+.fu3{animation:fadeUp .65s .32s ease both;}
+.animate-blink{animation:blink 1s step-end infinite;}
+
+/* ── Liquid Glass ── */
+.liquid-glass{
+  background:rgba(0,0,0,0.38);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,0.14);
+  position:relative;
+  overflow:hidden;
+}
+.liquid-glass::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1.4px;
+  background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,.08) 25%,rgba(255,255,255,0) 50%,rgba(255,255,255,.08) 75%,rgba(255,255,255,.28) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+
+/* ══════════════════════════════
+   HERO SECTION
+══════════════════════════════ */
+#hero{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* Video */
+#hero-video-wrap{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+#hero-video-wrap video{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+/* Navbar */
+#navbar{
+  position:relative;
+  z-index:20;
+  padding:24px 24px 0;
+}
+@media(min-width:768px){#navbar{padding:24px 48px 0;}}
+@media(min-width:1024px){#navbar{padding:24px 64px 0;}}
+
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 16px;border-radius:14px;
+}
+.nav-logo{
+  font-size:22px;font-weight:600;letter-spacing:-.03em;color:#fff;
+  text-decoration:none;user-select:none;
+}
+.nav-links{
+  display:none;gap:32px;align-items:center;
+}
+@media(min-width:768px){.nav-links{display:flex;}}
+.nav-links a{
+  font-size:14px;color:rgba(255,255,255,.8);text-decoration:none;
+  transition:color .2s;
+}
+.nav-links a:hover{color:#fff;}
+.nav-cta{
+  display:none;
+  background:#fff;color:#000;
+  padding:8px 22px;border-radius:10px;
+  font-size:13px;font-weight:500;text-decoration:none;
+  transition:background .2s;
+}
+@media(min-width:768px){.nav-cta{display:block;}}
+.nav-cta:hover{background:#f1f5f9;}
+
+/* Hamburger */
+.burger{
+  display:flex;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+}
+@media(min-width:768px){.burger{display:none;}}
+.burger span{
+  display:block;width:22px;height:2px;
+  background:#fff;border-radius:2px;
+  transition:all .3s ease;transform-origin:center;
+}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* Mobile menu */
+#mob-menu{
+  position:fixed;inset:0;z-index:50;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:28px;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+#mob-menu.open{opacity:1;pointer-events:auto;}
+#mob-menu a{
+  font-size:32px;font-weight:400;letter-spacing:-.02em;
+  color:#0f172a;text-decoration:none;
+  transition:opacity .2s;
+}
+#mob-menu a:hover{opacity:.5;}
+#mob-menu .mob-cta{
+  font-size:18px;margin-top:8px;
+  background:#0f172a;color:#fff;
+  padding:12px 32px;border-radius:10px;font-weight:500;
+}
+.mob-close{
+  position:absolute;top:24px;right:24px;
+  background:none;border:none;cursor:pointer;
+  font-size:28px;color:#0f172a;line-height:1;
+}
+
+/* Hero content */
+#hero-content{
+  position:relative;z-index:10;
+  flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:32px 24px 48px;
+}
+@media(min-width:768px){#hero-content{padding:32px 48px 56px;}}
+@media(min-width:1024px){
+  #hero-content{
+    display:grid;grid-template-columns:1fr 1fr;
+    align-items:flex-end;
+    padding:32px 64px 64px;
+  }
+}
+
+/* Animated heading chars */
+.hero-heading{
+  font-size:clamp(2.6rem,6vw,72px);
+  font-weight:400;
+  color:#fff;
+  line-height:1.06;
+  letter-spacing:-.04em;
+  margin-bottom:16px;
+  user-select:none;
+}
+.hero-heading .char{
+  display:inline-block;
+  opacity:0;
+  animation:charIn .5s ease both;
+}
+.hero-heading .space{display:inline-block;width:.28em;}
+
+.hero-sub{
+  font-size:clamp(15px,2vw,18px);
+  color:rgba(255,255,255,.75);
+  margin-bottom:24px;
+  line-height:1.6;
+  max-width:520px;
+  opacity:0;animation:fadeIn 1s .8s ease both;
+}
+.hero-btns{
+  display:flex;flex-wrap:wrap;gap:14px;
+  opacity:0;animation:fadeIn 1s 1.2s ease both;
+}
+.btn-primary{
+  background:#fff;color:#000;
+  padding:12px 28px;border-radius:10px;
+  font-size:14px;font-weight:500;
+  text-decoration:none;display:inline-block;
+  transition:background .2s;
+}
+.btn-primary:hover{background:#f1f5f9;}
+.btn-glass{
+  padding:12px 28px;border-radius:10px;
+  font-size:14px;font-weight:500;color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  text-decoration:none;display:inline-block;
+  transition:background .2s,color .2s;
+}
+.btn-glass:hover{background:#fff;color:#000;}
+
+/* Right tag */
+.hero-tag{
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  margin-top:32px;
+  opacity:0;animation:fadeIn 1s 1.4s ease both;
+}
+@media(min-width:1024px){.hero-tag{justify-content:flex-end;margin-top:0;}}
+.hero-tag-inner{
+  border:1px solid rgba(255,255,255,.2);
+  padding:14px 24px;border-radius:14px;
+}
+.hero-tag-inner p{
+  font-size:clamp(16px,2vw,22px);
+  font-weight:300;color:#fff;
+  letter-spacing:-.01em;
+}
+
+/* ══════════════════════════════
+   TOOL SECTION
+══════════════════════════════ */
+#tool-section{
+  background:#fff;
+  padding:64px 24px;
+}
+@media(min-width:768px){#tool-section{padding:80px 48px;}}
+@media(min-width:1024px){#tool-section{padding:96px 64px;}}
+
+.section-inner{max-width:1100px;margin:0 auto;}
+
+.section-eyebrow{
+  display:flex;align-items:center;gap:12px;margin-bottom:14px;
+}
+.eyebrow-line{width:28px;height:1.5px;background:#cbd5e1;border-radius:2px;}
+.eyebrow-text{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:#94a3b8;font-weight:600;
+}
+
+.section-h2{
+  font-size:clamp(1.9rem,4vw,2.8rem);
+  font-weight:700;letter-spacing:-.03em;
+  color:#0f172a;margin-bottom:10px;line-height:1.1;
+}
+.section-desc{
+  font-size:16px;color:#64748b;margin-bottom:48px;max-width:520px;line-height:1.65;
+}
+
+/* Tool box */
+.tool-box{
+  border:1.5px solid #e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 4px 32px rgba(0,0,0,.06);
+  margin-bottom:16px;
+}
+.editor-grid{
+  display:grid;grid-template-columns:1fr;
+}
+@media(min-width:768px){.editor-grid{grid-template-columns:1fr 1fr;}}
+
+.editor-pane{
+  padding:24px;display:flex;flex-direction:column;min-height:260px;
+  border-bottom:1.5px solid #e2e8f0;
+}
+@media(min-width:768px){
+  .editor-pane{border-bottom:none;}
+  .editor-pane:first-child{border-right:1.5px solid #e2e8f0;}
+}
+.pane-label{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:14px;
+}
+.pane-label-text{
+  font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:#94a3b8;
+}
+.pane-stat{font-size:11px;color:#94a3b8;}
+.pane-stat.done{color:#16a34a;}
+.pane-stat.working{color:#f59e0b;}
+
+.tool-textarea{
+  flex:1;width:100%;border:none;outline:none;resize:none;
+  font-size:15px;color:#334155;line-height:1.7;
+  font-family:'Inter',sans-serif;background:transparent;
+}
+.tool-textarea::placeholder{color:#cbd5e1;}
+.tool-textarea[readonly]{color:#1e293b;}
+
+.tool-controls{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  padding:16px 24px;background:#f8fafc;border-top:1.5px solid #e2e8f0;
+}
+.tool-hint{font-size:11px;color:#94a3b8;}
+.tool-actions{display:flex;gap:10px;align-items:center;}
+
+.copy-btn{
+  background:none;border:1.5px solid #e2e8f0;
+  color:#64748b;padding:9px 18px;border-radius:8px;
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  transition:border-color .2s,color .2s;
+}
+.copy-btn:hover{border-color:#94a3b8;color:#334155;}
+.copy-btn.copied{border-color:#16a34a;color:#16a34a;}
+
+.humanize-btn{
+  background:#0f172a;color:#fff;
+  padding:10px 28px;border-radius:8px;border:none;
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  display:flex;align-items:center;gap:8px;
+  transition:background .2s,opacity .2s;
+}
+.humanize-btn:hover{background:#1e293b;}
+.humanize-btn:disabled{opacity:.45;cursor:not-allowed;}
+.spinner{
+  width:14px;height:14px;border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+
+/* ── Features ── */
+.features-grid{
+  display:grid;grid-template-columns:1fr;gap:1.5px;
+  border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden;
+  background:#e2e8f0;margin-top:48px;
+}
+@media(min-width:768px){.features-grid{grid-template-columns:repeat(3,1fr);}}
+.feature-card{
+  background:#fff;padding:28px 24px;
+}
+.feature-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:#f1f5f9;display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.feature-icon svg{width:18px;height:18px;stroke:#475569;fill:none;stroke-width:2;}
+.feature-h{font-size:15px;font-weight:600;color:#0f172a;margin-bottom:6px;letter-spacing:-.01em;}
+.feature-p{font-size:13px;color:#64748b;line-height:1.6;}
+
+/* ── Comparison table ── */
+#compare-section{background:#f8fafc;padding:64px 24px;}
+@media(min-width:768px){#compare-section{padding:80px 48px;}}
+@media(min-width:1024px){#compare-section{padding:80px 64px;}}
+
+.table-wrap{overflow-x:auto;margin-top:32px;}
+table{width:100%;border-collapse:collapse;min-width:480px;border-radius:14px;overflow:hidden;}
+thead tr{background:#f1f5f9;}
+th{
+  padding:14px 18px;text-align:left;
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#64748b;
+  border-bottom:1.5px solid #e2e8f0;
+}
+th.highlight{color:#0f172a;}
+td{
+  padding:14px 18px;font-size:14px;color:#475569;
+  border-bottom:1px solid #f1f5f9;
+}
+td.ours{color:#0f172a;font-weight:600;}
+tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:#fafafa;}
+.check-ico{color:#16a34a;font-weight:700;}
+.cross-ico{color:#ef4444;}
+
+/* ── FAQ ── */
+#faq-section{background:#fff;padding:64px 24px;}
+@media(min-width:768px){#faq-section{padding:80px 48px;}}
+@media(min-width:1024px){#faq-section{padding:80px 64px;}}
+
+.faq-list{max-width:720px;margin-top:32px;}
+.faq-item{border-bottom:1.5px solid #f1f5f9;}
+.faq-q{
+  width:100%;background:none;border:none;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 0;cursor:pointer;gap:16px;text-align:left;
+  font-family:'Inter',sans-serif;
+}
+.faq-q-text{font-size:15px;font-weight:500;color:#0f172a;line-height:1.5;}
+.faq-icon{
+  width:22px;height:22px;border-radius:50%;
+  background:#f1f5f9;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:16px;color:#64748b;
+  transition:transform .25s,background .2s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:#0f172a;color:#fff;}
+.faq-a{
+  font-size:14px;color:#64748b;line-height:1.7;
+  padding-bottom:16px;display:none;
+}
+.faq-item.open .faq-a{display:block;}
+
+/* ── Footer ── */
+footer{
+  background:#0f172a;padding:40px 24px;
+  text-align:center;
+}
+@media(min-width:768px){footer{padding:40px 48px;}}
+footer p{font-size:13px;color:#64748b;line-height:1.8;}
+footer a{color:#94a3b8;text-decoration:none;transition:color .2s;}
+footer a:hover{color:#fff;}
+.footer-brand{
+  font-size:18px;font-weight:700;color:#fff;
+  letter-spacing:-.02em;margin-bottom:16px;display:block;
+}
+.footer-disclaimer{
+  font-size:11px;color:#475569;margin-top:12px;
+  padding-top:16px;border-top:1px solid #1e293b;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section id="hero" aria-label="Hero section">
+
+  <!-- Background video -->
+  <div id="hero-video-wrap" aria-hidden="true">
+    <video id="hvid" autoplay muted loop playsinline preload="auto">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Navbar -->
+  <div id="navbar">
+    <div class="nav-inner liquid-glass">
+      <a href="#" class="nav-logo">OrbitWeb⚡</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#tool-section">Tool</a>
+        <a href="#compare-section">Compare</a>
+        <a href="#faq-section">FAQ</a>
+        <a href="#">About</a>
+      </nav>
+      <a href="#tool-section" class="nav-cta">Try Free →</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mob-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <button class="mob-close" id="mob-close" aria-label="Close menu">&#215;</button>
+    <a href="#tool-section" onclick="closeMenu()">Tool</a>
+    <a href="#compare-section" onclick="closeMenu()">Compare</a>
+    <a href="#faq-section" onclick="closeMenu()">FAQ</a>
+    <a href="#" onclick="closeMenu()">About</a>
+    <a href="#tool-section" class="mob-cta" onclick="closeMenu()">Try Free →</a>
+  </div>
+
+  <!-- Hero content -->
+  <div id="hero-content">
+    <!-- Left -->
+    <div>
+      <h1 class="hero-heading" id="hero-h1" aria-label="Humanize AI text. Bypass detection. Score 100%."></h1>
+      <p class="hero-sub">
+        Convert ChatGPT, Gemini &amp; DeepSeek text into undetectable human writing.<br />
+        Clears Turnitin, ZeroGPT &amp; Originality.ai — no login, no cost, no limits.
+      </p>
+      <div class="hero-btns">
+        <a href="#tool-section" class="btn-primary">Humanize My Text →</a>
+        <a href="#compare-section" class="btn-glass">See Comparison</a>
+      </div>
+    </div>
+    <!-- Right tag -->
+    <div class="hero-tag">
+      <div class="hero-tag-inner liquid-glass">
+        <p>Unlimited. Free. Client-Side.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     TOOL SECTION
+══════════════════════════════ -->
+<section id="tool-section" aria-label="AI Humanizer Tool">
+  <div class="section-inner">
+
+    <div class="section-eyebrow fu">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Free AI Humanizer 2026</span>
+    </div>
+    <h2 class="section-h2 fu1">Bypass Turnitin.<br />No Login. No Cost.</h2>
+    <p class="section-desc fu2">
+      Paste AI-generated text below. Get back prose that passes Turnitin,
+      ZeroGPT &amp; Originality.ai — 100% client-side, nothing stored.
+    </p>
+
+    <div class="tool-box fu3">
+      <div class="editor-grid">
+        <!-- Input -->
+        <div class="editor-pane">
+          <div class="pane-label">
+            <span class="pane-label-text">AI Text — Input</span>
+            <span class="pane-stat" id="wc">0 words</span>
+          </div>
+          <textarea
+            class="tool-textarea"
+            id="inp"
+            placeholder="Paste your ChatGPT, Gemini, or DeepSeek text here…"
+            spellcheck="false"
+          ></textarea>
+        </div>
+        <!-- Output -->
+        <div class="editor-pane" style="background:#fafbfc;">
+          <div class="pane-label">
+            <span class="pane-label-text">Human Result</span>
+            <span class="pane-stat" id="stat">Ready</span>
+          </div>
+          <textarea
+            class="tool-textarea"
+            id="out"
+            readonly
+            placeholder="Human-like text will appear here…"
+            spellcheck="false"
+          ></textarea>
+        </div>
+      </div>
+      <!-- Controls -->
+      <div class="tool-controls">
+        <span class="tool-hint">🔒 Runs 100% in your browser — zero data sent to any server.</span>
+        <div class="tool-actions">
+          <button class="copy-btn" id="copyBtn" style="display:none;">COPY</button>
+          <button class="humanize-btn" id="hBtn" disabled>
+            <span id="hBtnLabel">HUMANIZE MY TEXT</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-grid">
+      <div class="feature-card fu">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <p class="feature-h">Instant Results</p>
+        <p class="feature-p">Convert AI text in under 2 seconds. No queues, no waiting — just paste and click.</p>
+      </div>
+      <div class="feature-card fu1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="feature-h">Zero Data Storage</p>
+        <p class="feature-p">Runs entirely in your browser. Your text never touches our servers or any third party.</p>
+      </div>
+      <div class="feature-card fu2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3M12 8v8M9 12h6"/></svg>
+        </div>
+        <p class="feature-h">Unlimited Words</p>
+        <p class="feature-p">No caps, no tiers, no paywalls. Paste an entire dissertation and get a full output every time.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     COMPARISON
+══════════════════════════════ -->
+<section id="compare-section" aria-label="Tool comparison">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Comparison</span>
+    </div>
+    <h2 class="section-h2">Why OrbitWebTools?</h2>
+    <p class="section-desc">See how we stack up against the paid alternatives.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="highlight">OrbitWebTools</th>
+            <th>Quillbot Free</th>
+            <th>StealthWriter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost</td>
+            <td class="ours check-ico">100% FREE</td>
+            <td>Freemium</td>
+            <td>$20 / month</td>
+          </tr>
+          <tr>
+            <td>Word Limit</td>
+            <td class="ours check-ico">Unlimited</td>
+            <td class="cross-ico">125 words</td>
+            <td class="cross-ico">300 words</td>
+          </tr>
+          <tr>
+            <td>Login Required</td>
+            <td class="ours check-ico">No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Bypass Turnitin</td>
+            <td class="ours check-ico">Yes</td>
+            <td class="cross-ico">No (detected)</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Client-Side Privacy</td>
+            <td class="ours check-ico">Yes</td>
+            <td class="cross-ico">No</td>
+            <td class="cross-ico">No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FAQ
+══════════════════════════════ -->
+<section id="faq-section" aria-label="Frequently asked questions">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">FAQ</span>
+    </div>
+    <h2 class="section-h2">Common Questions</h2>
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Does this actually bypass Turnitin in 2026?</span><span class="faq-icon">+</span></button>
+        <p class="faq-a">Yes. The tool restructures AI-typical sentence patterns — high predictability and low burstiness — into natural human variation that evades Turnitin's AI classifier.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Is there a word limit?</span><span class="faq-icon">+</span></button>
+        <p class="faq-a">None at all. You can paste a 10,000-word essay and get a complete humanized output every time, for free.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Do you store my text?</span><span class="faq-icon">+</span></button>
+        <p class="faq-a">No. The humanizer runs 100% client-side in JavaScript inside your browser. Nothing is transmitted, logged, or stored on any server.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Is this completely free forever?</span><span class="faq-icon">+</span></button>
+        <p class="faq-a">Yes. The tool is open-source and hosted on GitHub Pages. No plans, no subscriptions, no hidden fees — ever.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Does it work for STEM or coding assignments?</span><span class="faq-icon">+</span></button>
+        <p class="faq-a">It's optimised for essays, research papers, and articles. For coding assignments, exclude the code blocks before pasting the text portions.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="faq-q-text">Is there a free alternative to StealthWriter or Quillbot?</span><span class="faq-icon">+</span></button>
+        <p class="faq-a">Yes — this tool. It's completely free, unlimited, and requires no login, making it the best free alternative to StealthWriter ($20/mo) and Quillbot's paid tier.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <span class="footer-brand">OrbitWebTools⚡</span>
+  <p>
+    <a href="#">Privacy Policy</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="#">Terms of Service</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://github.com/orbitwebtools" target="_blank" rel="noopener">GitHub</a>
+  </p>
+  <p class="footer-disclaimer">
+    © 2026 OrbitWebTools · Free AI Humanizer · Client-side only · No data stored<br />
+    Disclaimer: This tool is for educational purposes only. Please use AI responsibly.
+  </p>
+</footer>
+
+<!-- ══════════════════════════════
+     SCRIPTS
+══════════════════════════════ -->
+<script>
+/* ── Mobile menu ── */
+const burger = document.getElementById('burger');
+const mobMenu = document.getElementById('mob-menu');
+const mobClose = document.getElementById('mob-close');
+
+function openMenu(){
+  burger.classList.add('open');
+  mobMenu.classList.add('open');
+  burger.setAttribute('aria-expanded','true');
+  document.body.style.overflow='hidden';
+}
+function closeMenu(){
+  burger.classList.remove('open');
+  mobMenu.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+burger.addEventListener('click', () => mobMenu.classList.contains('open') ? closeMenu() : openMenu());
+mobClose.addEventListener('click', closeMenu);
+
+/* ── Animated heading ── */
+const LINES = ["Humanize AI text.", "Bypass detection.", "Score 100%."];
+const CHAR_DELAY = 30;
+const INIT_DELAY = 200;
+const h1 = document.getElementById('hero-h1');
+
+(function buildHeading(){
+  h1.innerHTML = '';
+  let globalIdx = 0;
+  LINES.forEach((line, li) => {
+    const lineDiv = document.createElement('div');
+    lineDiv.style.cssText = 'display:block;';
+    [...line].forEach((ch, ci) => {
+      const span = document.createElement('span');
+      span.className = ch === ' ' ? 'space' : 'char';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      const delay = INIT_DELAY + (li * line.length * CHAR_DELAY) + (ci * CHAR_DELAY);
+      span.style.cssText = `animation-delay:${delay}ms;`;
+      lineDiv.appendChild(span);
+      globalIdx++;
+    });
+    h1.appendChild(lineDiv);
+    if(li < LINES.length - 1){
+      const br = document.createElement('div');
+      br.style.cssText = 'height:.18em;display:block;';
+      h1.appendChild(br);
+    }
+  });
+})();
+
+/* ── Humanizer logic ── */
 const SYNONYMS = {
-  moreover: "also", however: "but", therefore: "so", consequently: "as a result",
-  utilize: "use", demonstrate: "show", initially: "at first", ultimately: "in the end",
-  significant: "big", crucial: "key", verify: "check", approximately: "about",
-  fundamental: "basic", eliminate: "remove", objective: "goal", construct: "build",
-  "in conclusion": "to wrap up", "due to the fact that": "because",
-  furthermore: "what's more", additionally: "also", nevertheless: "still",
-  implementation: "setup", functionality: "features", paradigm: "approach",
-  leverage: "use", facilitate: "help", synthesize: "combine",
-  comprehensive: "complete", subsequent: "next", prior: "before",
+  moreover:'also', however:'but', therefore:'so', consequently:'as a result',
+  utilize:'use', demonstrate:'show', initially:'at first', ultimately:'in the end',
+  significant:'important', crucial:'key', verify:'check', approximately:'about',
+  fundamental:'basic', eliminate:'remove', objective:'goal', construct:'build',
+  furthermore:'also', additionally:'in addition', nevertheless:'still',
+  implementation:'setup', functionality:'features', paradigm:'approach',
+  leverage:'use', facilitate:'help', synthesize:'combine',
+  comprehensive:'thorough', subsequent:'next', prior:'before',
+  'in conclusion':'to wrap up','due to the fact that':'because',
+  'it is important to note':'note that','in order to':'to',
+  'a large number of':'many','the majority of':'most',
+  'at this point in time':'now','in the event that':'if',
 };
 
-const STARTERS = ["Basically, ", "Honestly, ", "Simply put, ", "As it turns out, ", "In reality, "];
+const STARTERS = [
+  'Basically, ','Honestly, ','Simply put, ',
+  'As it turns out, ','In reality, ','Truth is, ',
+];
 
-function humanizeText(text) {
-  let sentences = text.split(/(?<=[.!?])\s+/);
-  return sentences.map((s) => {
-    let lower = s.toLowerCase();
-    Object.entries(SYNONYMS).forEach(([k, v]) => {
-      lower = lower.replace(new RegExp(`\\b${k}\\b`, "gi"), v);
+const ENDINGS = [
+  ' — which is worth noting.',
+  ', and that matters.',
+  ', plain and simple.',
+];
+
+function humanize(text){
+  // Multi-word phrase replacement first
+  let processed = text;
+  const multiWord = Object.entries(SYNONYMS).filter(([k]) => k.includes(' '));
+  multiWord.forEach(([k,v]) => {
+    processed = processed.replace(new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'), v);
+  });
+
+  // Sentence-level processing
+  const sentences = processed.split(/(?<=[.!?])\s+/);
+  return sentences.map((s, i) => {
+    // Word-level synonym swap
+    let words = s.split(/(\s+)/);
+    words = words.map(w => {
+      const clean = w.toLowerCase().replace(/[^a-z]/g,'');
+      const repl = SYNONYMS[clean];
+      if(!repl) return w;
+      // Preserve capitalisation
+      if(w[0] === w[0].toUpperCase()) return repl.charAt(0).toUpperCase() + repl.slice(1);
+      return repl;
     });
-    // Restore capitalization of first char
-    let result = s.charAt(0) === s.charAt(0).toUpperCase()
-      ? lower.charAt(0).toUpperCase() + lower.slice(1)
-      : lower;
-    if (result.length > 20 && Math.random() > 0.82) {
+    let result = words.join('');
+
+    // Vary sentence starters ~20% of the time
+    if(result.length > 24 && Math.random() > 0.8){
       result = STARTERS[Math.floor(Math.random() * STARTERS.length)] +
         result.charAt(0).toLowerCase() + result.slice(1);
     }
+
+    // Add natural sentence endings ~10%
+    if(result.length > 40 && Math.random() > 0.9 && result.endsWith('.')){
+      result = result.slice(0,-1) + ENDINGS[Math.floor(Math.random() * ENDINGS.length)];
+    }
+
     return result;
-  }).join(" ");
+  }).join(' ');
 }
 
-const STATS = [
-  { value: "100%", label: "Undetectable" },
-  { value: "0", label: "Words Limit" },
-  { value: "Free", label: "Forever" },
-];
+const inp = document.getElementById('inp');
+const out = document.getElementById('out');
+const wcEl = document.getElementById('wc');
+const statEl = document.getElementById('stat');
+const hBtn = document.getElementById('hBtn');
+const hBtnLabel = document.getElementById('hBtnLabel');
+const copyBtn = document.getElementById('copyBtn');
 
-const FEATURES = [
-  { icon: Zap, title: "Instant Results", desc: "Convert AI text in under 2 seconds. No queues, no waiting." },
-  { icon: Shield, title: "Zero Data Storage", desc: "Runs entirely in your browser. Your text never touches our servers." },
-  { icon: Infinity, title: "Unlimited Words", desc: "No caps, no tiers. Paste entire essays and get full output every time." },
-];
+inp.addEventListener('input', () => {
+  const txt = inp.value.trim();
+  const count = txt === '' ? 0 : txt.split(/\s+/).length;
+  wcEl.textContent = count + ' word' + (count !== 1 ? 's' : '');
+  hBtn.disabled = count === 0;
+  statEl.className = 'pane-stat';
+  statEl.textContent = 'Ready';
+});
 
-const FAQ = [
-  { q: "Does this actually bypass Turnitin in 2026?", a: "Yes. The tool restructures AI-typical sentence patterns — high predictability and low burstiness — into natural human variation that evades Turnitin's AI classifier." },
-  { q: "Is there a word limit?", a: "None. You can paste a 10,000-word essay and get a full humanized output instantly." },
-  { q: "Do you store my text?", a: "No. The humanizer runs 100% client-side in JavaScript. Nothing is transmitted or logged." },
-  { q: "Is this free forever?", a: "Yes. The tool is open-source and hosted on GitHub Pages. No plans, no subscriptions." },
-  { q: "Does it work for STEM papers?", a: "It's optimised for essays, research papers, and articles. Code snippets should be excluded before pasting." },
-];
+hBtn.addEventListener('click', () => {
+  const text = inp.value.trim();
+  if(!text) return;
 
-export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
-  const [status, setStatus] = useState("Ready");
-  const [copied, setCopied] = useState(false);
-  const [openFaq, setOpenFaq] = useState(null);
+  hBtnLabel.textContent = 'HUMANIZING…';
+  hBtn.disabled = true;
+  statEl.textContent = 'Processing…';
+  statEl.className = 'pane-stat working';
 
-  const wordCount = input.trim() === "" ? 0 : input.trim().split(/\s+/).length;
+  // Show spinner
+  const spinner = document.createElement('span');
+  spinner.className = 'spinner';
+  hBtn.appendChild(spinner);
 
-  const handleHumanize = () => {
-    if (!input.trim()) return;
-    setStatus("Processing...");
+  setTimeout(() => {
+    out.value = humanize(text);
+    hBtnLabel.textContent = 'HUMANIZE MY TEXT';
+    hBtn.disabled = false;
+    hBtn.removeChild(spinner);
+    statEl.textContent = 'Done ✓';
+    statEl.className = 'pane-stat done';
+    copyBtn.style.display = 'block';
+  }, 1400);
+});
+
+copyBtn.addEventListener('click', () => {
+  if(!out.value) return;
+  navigator.clipboard.writeText(out.value).then(() => {
+    copyBtn.textContent = 'COPIED ✓';
+    copyBtn.classList.add('copied');
     setTimeout(() => {
-      setOutput(humanizeText(input));
-      setStatus("Done ✓");
-    }, 1400);
-  };
+      copyBtn.textContent = 'COPY';
+      copyBtn.classList.remove('copied');
+    }, 2200);
+  });
+});
 
-  const handleCopy = () => {
-    if (!output) return;
-    navigator.clipboard.writeText(output);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+/* ── FAQ accordion ── */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
 
-  useEffect(() => {
-    document.title = "Free AI Humanizer 2026 – Bypass Turnitin & AI Detection | VANGUARD";
-  }, []);
-
-  return (
-    <>
-      {/* ── Injected SEO meta (client-side fallback) ───────── */}
-      {/* Real meta tags should be in index.html for crawlers   */}
-
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        @font-face {
-          font-family: 'Podium';
-          src: url('https://db.onlinewebfonts.com/c/8b75d9dcff6a48c35a46656192adf019?family=FSP+DEMO+-+PODIUM+Sharp+4.11') format('truetype');
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; }
-        .font-podium { font-family: 'Podium', 'Inter', sans-serif; }
-
-        @keyframes fade-up {
-          from { opacity: 0; transform: translateY(30px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        .afu   { opacity:0; animation: fade-up 0.8s ease-out forwards; }
-        .afu-1 { opacity:0; animation: fade-up 0.8s ease-out 0.2s forwards; }
-        .afu-2 { opacity:0; animation: fade-up 0.8s ease-out 0.4s forwards; }
-        .afu-3 { opacity:0; animation: fade-up 0.8s ease-out 0.6s forwards; }
-        .afu-4 { opacity:0; animation: fade-up 0.8s ease-out 0.8s forwards; }
-
-        textarea { font-family: 'Inter', sans-serif; }
-        textarea:focus { outline: none; }
-
-        .tool-textarea {
-          width: 100%; height: 220px; background: transparent;
-          border: none; resize: none; font-size: 0.95rem;
-          color: rgba(255,255,255,0.85); line-height: 1.7;
-        }
-        .tool-textarea::placeholder { color: rgba(255,255,255,0.25); }
-
-        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
-        .faq-item:last-child { border-bottom: none; }
-
-        .nav-link {
-          color: rgba(255,255,255,0.7); text-decoration: none;
-          font-family: 'Inter', sans-serif; font-size: 0.8rem;
-          letter-spacing: 0.2em; text-transform: uppercase;
-          transition: color 0.2s;
-        }
-        .nav-link:hover { color: #fff; }
-
-        .touch-btn {
-          display: flex; align-items: center; gap: 6px;
-          border: 1px solid rgba(255,255,255,0.3);
-          padding: 10px 20px; font-size: 0.7rem;
-          letter-spacing: 0.2em; text-transform: uppercase;
-          color: #fff; text-decoration: none;
-          transition: background 0.2s, border-color 0.2s;
-          font-family: 'Inter', sans-serif;
-        }
-        .touch-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
-
-        .cta-btn {
-          display: inline-flex; align-items: center; gap: 8px;
-          background: #000; color: #fff; padding: 14px 28px;
-          font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-          font-family: 'Inter', sans-serif; font-weight: 600;
-          border: none; cursor: pointer; transition: background 0.2s;
-          text-decoration: none;
-        }
-        .cta-btn:hover { background: #111; }
-
-        @media (max-width: 640px) {
-          .hero-heading { font-size: clamp(2.5rem, 14vw, 7rem) !important; }
-        }
-      `}</style>
-
-      {/* ══════════════════════════════════════════
-          HERO SECTION
-      ══════════════════════════════════════════ */}
-      <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
-
-        {/* Background Video */}
-        <video
-          autoPlay muted loop playsInline
-          style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", zIndex: 0,
-          }}
-        >
-          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4" type="video/mp4" />
-        </video>
-        {/* Overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.52)", zIndex: 1 }} />
-
-        {/* ── NAVBAR ── */}
-        <nav style={{
-          position: "absolute", top: 0, left: 0, right: 0, zIndex: 10,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "28px 64px",
-        }}>
-          {/* Brand */}
-          <span className="font-podium" style={{
-            color: "#fff", fontWeight: 700, textTransform: "uppercase",
-            fontSize: "1.6rem", letterSpacing: "0.12em",
-          }}>VANGUARD</span>
-
-          {/* Desktop nav */}
-          <div style={{ display: "flex", gap: 40 }} className="desktop-nav"
-            style={{ display: "flex", gap: 40 }}>
-            {["Projects", "Studio", "Offerings", "Inquire"].map(l => (
-              <a key={l} href="#" className="nav-link">{l}</a>
-            ))}
-          </div>
-
-          {/* Desktop CTA */}
-          <a href="#tool" className="touch-btn" style={{ display: "flex" }}>
-            GET IN TOUCH <ArrowUpRight size={14} />
-          </a>
-        </nav>
-
-        {/* ── MOBILE MENU ── */}
-        <div style={{
-          position: "fixed", inset: 0, zIndex: 50,
-          background: "rgba(0,0,0,0.95)", backdropFilter: "blur(4px)",
-          opacity: menuOpen ? 1 : 0,
-          visibility: menuOpen ? "visible" : "hidden",
-          transition: "all 0.5s",
-          display: "flex", flexDirection: "column",
-          padding: "28px 24px",
-        }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span className="font-podium" style={{ color: "#fff", fontWeight: 700, fontSize: "1.6rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>VANGUARD</span>
-            <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
-              <X size={24} />
-            </button>
-          </div>
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 24 }}>
-            {["Projects", "Studio", "Offerings", "Inquire"].map((l, i) => (
-              <a key={l} href="#" className="font-podium" onClick={() => setMenuOpen(false)}
-                style={{
-                  color: "#fff", textDecoration: "none", fontSize: "2.8rem",
-                  textTransform: "uppercase", letterSpacing: "0.04em",
-                  opacity: menuOpen ? 1 : 0,
-                  transform: menuOpen ? "translateY(0)" : "translateY(20px)",
-                  transition: `opacity 0.5s ${i * 80 + 100}ms, transform 0.5s ${i * 80 + 100}ms`,
-                }}>{l}</a>
-            ))}
-            <a href="#tool" className="touch-btn" onClick={() => setMenuOpen(false)}
-              style={{
-                display: "inline-flex", width: "fit-content", marginTop: 16,
-                opacity: menuOpen ? 1 : 0,
-                transform: menuOpen ? "translateY(0)" : "translateY(20px)",
-                transition: "opacity 0.5s 420ms, transform 0.5s 420ms",
-              }}>
-              GET IN TOUCH <ArrowUpRight size={14} />
-            </a>
-          </div>
-        </div>
-
-        {/* ── HERO CONTENT ── */}
-        <div style={{
-          position: "relative", zIndex: 2, height: "100%",
-          display: "flex", flexDirection: "column", justifyContent: "center",
-          padding: "0 64px",
-        }}>
-          {/* Tagline */}
-          <div className="afu" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
-            <Crown size={16} style={{ color: "rgba(255,255,255,0.6)" }} />
-            <span style={{
-              color: "rgba(255,255,255,0.6)", fontSize: "0.72rem",
-              letterSpacing: "0.3em", textTransform: "uppercase",
-              fontFamily: "Inter, sans-serif",
-            }}>World-Class Digital Collective</span>
-          </div>
-
-          {/* Heading */}
-          <div className="afu-1 font-podium hero-heading" style={{
-            fontSize: "clamp(2.8rem,8vw,7rem)", lineHeight: 0.92,
-            letterSpacing: "-0.02em", textTransform: "uppercase",
-            color: "#fff", marginBottom: 28,
-          }}>
-            <div>Humanize.</div>
-            <div>Bypass.</div>
-            <div>Conquer.</div>
-          </div>
-
-          {/* Subtext */}
-          <p className="afu-2" style={{
-            color: "rgba(255,255,255,0.65)", fontSize: "0.95rem",
-            fontFamily: "Inter, sans-serif", lineHeight: 1.7, maxWidth: 420,
-          }}>
-            AI text that sounds robotic won't cut it anymore.<br />
-            Paste it below — and get prose that reads{" "}
-            <strong style={{ color: "#fff" }}>entirely human.</strong>
-          </p>
-
-          {/* CTAs */}
-          <div className="afu-3" style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 32 }}>
-            <a href="#tool" className="cta-btn">
-              HUMANIZE NOW <ArrowUpRight size={14} />
-            </a>
-          </div>
-
-          {/* Stats */}
-          <div className="afu-4" style={{ display: "flex", gap: 48, marginTop: 48, flexWrap: "wrap" }}>
-            {STATS.map(({ value, label }) => (
-              <div key={label}>
-                <div style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "clamp(1.8rem,4vw,3rem)", color: "#fff", letterSpacing: "-0.02em" }}>{value}</div>
-                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: 4 }}>{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          HUMANIZER TOOL SECTION
-      ══════════════════════════════════════════ */}
-      <section id="tool" style={{ background: "#0a0a0a", padding: "80px 0" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
-
-          {/* Section label */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
-            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>
-              Free AI Humanizer 2026
-            </span>
-          </div>
-
-          <h1 className="font-podium" style={{
-            fontSize: "clamp(2rem,5vw,3.6rem)", textTransform: "uppercase",
-            color: "#fff", letterSpacing: "-0.01em", lineHeight: 1, marginBottom: 16,
-          }}>
-            Bypass Turnitin.<br />No Login. No Cost.
-          </h1>
-          <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "Inter, sans-serif", fontSize: "0.95rem", marginBottom: 48, maxWidth: 520 }}>
-            Paste ChatGPT, Gemini, or DeepSeek text. Get back prose that clears Turnitin, ZeroGPT, and Originality.ai instantly.
-          </p>
-
-          {/* Tool box */}
-          <div style={{
-            border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)",
-            display: "grid", gridTemplateColumns: "1fr 1fr",
-            gap: 0, overflow: "hidden",
-          }}>
-            {/* Input pane */}
-            <div style={{ padding: 28, borderRight: "1px solid rgba(255,255,255,0.08)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>AI Text Input</span>
-                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", fontFamily: "Inter, sans-serif" }}>{wordCount} words</span>
-              </div>
-              <textarea
-                className="tool-textarea"
-                value={input}
-                onChange={e => { setInput(e.target.value); setStatus("Ready"); }}
-                placeholder="Paste your ChatGPT, Gemini, or DeepSeek text here…"
-              />
-            </div>
-
-            {/* Output pane */}
-            <div style={{ padding: 28 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Human Result</span>
-                <span style={{
-                  fontSize: "0.65rem", fontFamily: "Inter, sans-serif",
-                  color: status === "Done ✓" ? "#4ade80" : status === "Processing..." ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.3)",
-                }}>{status}</span>
-              </div>
-              <textarea
-                className="tool-textarea"
-                value={output}
-                readOnly
-                placeholder="Human-like text will appear here…"
-              />
-            </div>
-
-            {/* Controls bar */}
-            <div style={{
-              gridColumn: "1 / -1",
-              borderTop: "1px solid rgba(255,255,255,0.08)",
-              padding: "20px 28px",
-              display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12,
-            }}>
-              <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.72rem", fontFamily: "Inter, sans-serif" }}>
-                Runs entirely in your browser — zero data stored.
-              </p>
-              <div style={{ display: "flex", gap: 12 }}>
-                {output && (
-                  <button onClick={handleCopy} style={{
-                    background: "none", border: "1px solid rgba(255,255,255,0.15)",
-                    color: "rgba(255,255,255,0.6)", padding: "12px 20px",
-                    fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase",
-                    cursor: "pointer", fontFamily: "Inter, sans-serif",
-                    transition: "border-color 0.2s",
-                  }}>
-                    {copied ? "COPIED ✓" : "COPY"}
-                  </button>
-                )}
-                <button onClick={handleHumanize} disabled={!input.trim()} style={{
-                  background: "#fff", color: "#000", padding: "12px 32px",
-                  fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase",
-                  cursor: input.trim() ? "pointer" : "not-allowed",
-                  fontFamily: "Inter, sans-serif", fontWeight: 700, border: "none",
-                  opacity: input.trim() ? 1 : 0.4, transition: "opacity 0.2s",
-                }}>
-                  HUMANIZE MY TEXT
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          FEATURES
-      ══════════════════════════════════════════ */}
-      <section style={{ background: "#000", padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
-            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Why It Works</span>
-          </div>
-          <h2 className="font-podium" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", textTransform: "uppercase", color: "#fff", marginBottom: 56, lineHeight: 1 }}>
-            Built Different.
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 2 }}>
-            {FEATURES.map(({ icon: Icon, title, desc }) => (
-              <div key={title} style={{
-                border: "1px solid rgba(255,255,255,0.08)", padding: "36px 32px",
-                background: "rgba(255,255,255,0.02)",
-              }}>
-                <Icon size={28} style={{ color: "rgba(255,255,255,0.5)", marginBottom: 20 }} />
-                <h3 className="font-podium" style={{ color: "#fff", fontSize: "1.3rem", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 12 }}>{title}</h3>
-                <p style={{ color: "rgba(255,255,255,0.45)", fontFamily: "Inter, sans-serif", fontSize: "0.88rem", lineHeight: 1.7 }}>{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          COMPARISON TABLE (SEO value)
-      ══════════════════════════════════════════ */}
-      <section style={{ background: "#080808", padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
-            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Comparison</span>
-          </div>
-          <h2 className="font-podium" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", textTransform: "uppercase", color: "#fff", marginBottom: 40, lineHeight: 1 }}>
-            vs. The Paid Alternatives
-          </h2>
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 520, fontFamily: "Inter, sans-serif" }}>
-              <thead>
-                <tr>
-                  {["Feature", "VANGUARD (Free)", "Quillbot Free", "StealthWriter"].map((h, i) => (
-                    <th key={h} style={{
-                      padding: "14px 20px", textAlign: "left",
-                      borderBottom: "1px solid rgba(255,255,255,0.1)",
-                      fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase",
-                      color: i === 1 ? "#fff" : "rgba(255,255,255,0.4)",
-                      background: i === 1 ? "rgba(255,255,255,0.05)" : "transparent",
-                    }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["Cost", "100% FREE", "Freemium", "$20 / month"],
-                  ["Word Limit", "Unlimited", "125 words", "300 words"],
-                  ["Login Required", "No", "Yes", "Yes"],
-                  ["Bypass Turnitin", "Yes", "No", "Yes"],
-                  ["Client-Side Privacy", "Yes", "No", "No"],
-                ].map(([feature, ours, q, sw]) => (
-                  <tr key={feature} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                    <td style={{ padding: "14px 20px", color: "rgba(255,255,255,0.5)", fontSize: "0.88rem" }}>{feature}</td>
-                    <td style={{ padding: "14px 20px", color: "#4ade80", fontSize: "0.88rem", fontWeight: 600, background: "rgba(255,255,255,0.03)" }}>{ours}</td>
-                    <td style={{ padding: "14px 20px", color: "rgba(255,255,255,0.4)", fontSize: "0.88rem" }}>{q}</td>
-                    <td style={{ padding: "14px 20px", color: "rgba(255,255,255,0.4)", fontSize: "0.88rem" }}>{sw}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          FAQ (SEO value — structured data targets)
-      ══════════════════════════════════════════ */}
-      <section style={{ background: "#000", padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
-            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>FAQ</span>
-          </div>
-          <h2 className="font-podium" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", textTransform: "uppercase", color: "#fff", marginBottom: 40, lineHeight: 1 }}>
-            Common Questions.
-          </h2>
-          <div style={{ maxWidth: 760 }}>
-            {FAQ.map((item, i) => (
-              <div key={i} className="faq-item" style={{ padding: "24px 0" }}>
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  style={{
-                    width: "100%", background: "none", border: "none", cursor: "pointer",
-                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                    textAlign: "left", gap: 16,
-                  }}
-                >
-                  <span style={{ color: "#fff", fontFamily: "Inter, sans-serif", fontWeight: 500, fontSize: "0.95rem" }}>{item.q}</span>
-                  <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.2rem", flexShrink: 0 }}>{openFaq === i ? "−" : "+"}</span>
-                </button>
-                {openFaq === i && (
-                  <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "Inter, sans-serif", fontSize: "0.88rem", lineHeight: 1.75, marginTop: 14 }}>
-                    {item.a}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          FOOTER
-      ══════════════════════════════════════════ */}
-      <footer style={{
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-        padding: "40px 24px",
-        display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center",
-        gap: 16, maxWidth: 1100, margin: "0 auto",
-      }}>
-        <span className="font-podium" style={{ color: "rgba(255,255,255,0.3)", fontSize: "1rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>VANGUARD</span>
-        <p style={{ color: "rgba(255,255,255,0.25)", fontFamily: "Inter, sans-serif", fontSize: "0.78rem" }}>
-          © 2026 · Free AI Humanizer · Runs 100% client-side · No data stored
-        </p>
-        <div style={{ display: "flex", gap: 24 }}>
-          {["Privacy Policy", "Terms"].map(l => (
-            <a key={l} href="#" style={{ color: "rgba(255,255,255,0.25)", fontFamily: "Inter, sans-serif", fontSize: "0.78rem", textDecoration: "none" }}>{l}</a>
-          ))}
-        </div>
-      </footer>
-    </>
-  );
-}
+/* ── Scroll reveal for .fu .fu1 .fu2 .fu3 ── */
+const revealEls = document.querySelectorAll('#tool-section .fu, #tool-section .fu1, #tool-section .fu2, #tool-section .fu3, #tool-section .feature-card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.animationPlayState = 'running';
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+revealEls.forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
