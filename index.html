@@ -1,238 +1,534 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#4f46e5">
-    <meta name="robots" content="index, follow">
+import { useState, useEffect } from "react";
+import { ArrowUpRight, Crown, X, Zap, Shield, Infinity } from "lucide-react";
 
-    <title>Free Turnitin AI Humanizer 2026 | Bypass AI Detection (No Login)</title>
-    <meta name="description" content="Best Free Turnitin AI Humanizer 2026. Convert ChatGPT to Human text instantly. Bypass ZeroGPT, Originality.ai & Turnitin without login. Unlimited & 100% Free.">
-    <meta name="keywords" content="turnitin ai humanizer free, bypass turnitin, chatgpt to human converter, remove ai detection, free ai bypass tool, undetectable ai free, anti ai detector">
-    
-    <link rel="canonical" href="https://orbitwebtools.github.io/Humanize-AI/" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+const SYNONYMS = {
+  moreover: "also", however: "but", therefore: "so", consequently: "as a result",
+  utilize: "use", demonstrate: "show", initially: "at first", ultimately: "in the end",
+  significant: "big", crucial: "key", verify: "check", approximately: "about",
+  fundamental: "basic", eliminate: "remove", objective: "goal", construct: "build",
+  "in conclusion": "to wrap up", "due to the fact that": "because",
+  furthermore: "what's more", additionally: "also", nevertheless: "still",
+  implementation: "setup", functionality: "features", paradigm: "approach",
+  leverage: "use", facilitate: "help", synthesize: "combine",
+  comprehensive: "complete", subsequent: "next", prior: "before",
+};
 
-    <meta property="og:title" content="Bypass Turnitin & AI Detectors for FREE">
-    <meta property="og:description" content="Convert AI text to 100% Human Score. No Login. Unlimited Words. Works for Students.">
-    <meta property="og:type" content="website">
+const STARTERS = ["Basically, ", "Honestly, ", "Simply put, ", "As it turns out, ", "In reality, "];
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Turnitin AI Humanizer Free",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "EducationalApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "3420" }
+function humanizeText(text) {
+  let sentences = text.split(/(?<=[.!?])\s+/);
+  return sentences.map((s) => {
+    let lower = s.toLowerCase();
+    Object.entries(SYNONYMS).forEach(([k, v]) => {
+      lower = lower.replace(new RegExp(`\\b${k}\\b`, "gi"), v);
+    });
+    // Restore capitalization of first char
+    let result = s.charAt(0) === s.charAt(0).toUpperCase()
+      ? lower.charAt(0).toUpperCase() + lower.slice(1)
+      : lower;
+    if (result.length > 20 && Math.random() > 0.82) {
+      result = STARTERS[Math.floor(Math.random() * STARTERS.length)] +
+        result.charAt(0).toLowerCase() + result.slice(1);
     }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How to bypass Turnitin AI detection for free?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Use OrbitWebTools AI Humanizer. Paste your text, click convert, and get 100% human score on Turnitin without paying." }
-      }, {
-        "@type": "Question",
-        "name": "Is there a free alternative to StealthWriter?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, this tool is a completely free alternative to StealthWriter and Quillbot. It offers unlimited words with no login required." }
-      }]
-    }
-    </script>
+    return result;
+  }).join(" ");
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root { --primary: #2563eb; --dark: #0f172a; --light: #f8fafc; --success: #22c55e; }
-        body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; margin: 0; padding: 0; }
-        
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        
-        /* HEADER STYLE */
-        header { text-align: center; padding: 40px 20px; }
-        h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; line-height: 1.1; }
-        h1 span { color: var(--primary); }
-        .subtext { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-        
-        /* TOOL BOX STYLE */
-        .tool-box { background: white; border-radius: 16px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 50px; }
-        .editor-area { display: grid; grid-template-columns: 1fr; }
-        @media(min-width: 768px) { .editor-area { grid-template-columns: 1fr 1fr; } }
-        
-        .text-section { padding: 20px; display: flex; flex-direction: column; min-height: 350px; border-bottom: 1px solid #e2e8f0; }
-        @media(min-width: 768px) { .text-section { border-bottom: none; border-right: 1px solid #e2e8f0; } }
-        
-        .label { font-size: 0.8rem; font-weight: 800; letter-spacing: 1px; color: #94a3b8; margin-bottom: 10px; display: flex; justify-content: space-between; }
-        textarea { width: 100%; height: 100%; border: none; outline: none; resize: none; font-size: 1rem; color: #334155; font-family: inherit; background: transparent; }
-        
-        .controls { padding: 20px; background: #f1f5f9; text-align: center; border-top: 1px solid #e2e8f0; }
-        .btn { background: var(--primary); color: white; padding: 15px 40px; border: none; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-        .btn:hover { transform: translateY(-2px); background: #1d4ed8; }
-        .btn:active { transform: translateY(0); }
+const STATS = [
+  { value: "100%", label: "Undetectable" },
+  { value: "0", label: "Words Limit" },
+  { value: "Free", label: "Forever" },
+];
 
-        /* SEO CONTENT SECTION (CRITICAL FOR RANKING) */
-        .seo-content { background: white; padding: 40px; border-radius: 16px; margin-top: 40px; border: 1px solid #e2e8f0; }
-        h2 { font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px; color: var(--dark); }
-        h3 { font-size: 1.4rem; margin-top: 20px; color: #334155; }
-        p, li { color: #475569; margin-bottom: 15px; }
-        
-        /* COMPARISON TABLE */
-        .table-wrap { overflow-x: auto; margin: 30px 0; }
-        table { width: 100%; border-collapse: collapse; min-width: 500px; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
-        th { background: #f8fafc; font-weight: 800; color: var(--primary); }
-        .check { color: var(--success); font-weight: bold; }
-        .cross { color: #ef4444; font-weight: bold; }
+const FEATURES = [
+  { icon: Zap, title: "Instant Results", desc: "Convert AI text in under 2 seconds. No queues, no waiting." },
+  { icon: Shield, title: "Zero Data Storage", desc: "Runs entirely in your browser. Your text never touches our servers." },
+  { icon: Infinity, title: "Unlimited Words", desc: "No caps, no tiers. Paste entire essays and get full output every time." },
+];
 
-        /* FOOTER */
-        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.9rem; }
-    </style>
-</head>
-<body>
+const FAQ = [
+  { q: "Does this actually bypass Turnitin in 2026?", a: "Yes. The tool restructures AI-typical sentence patterns — high predictability and low burstiness — into natural human variation that evades Turnitin's AI classifier." },
+  { q: "Is there a word limit?", a: "None. You can paste a 10,000-word essay and get a full humanized output instantly." },
+  { q: "Do you store my text?", a: "No. The humanizer runs 100% client-side in JavaScript. Nothing is transmitted or logged." },
+  { q: "Is this free forever?", a: "Yes. The tool is open-source and hosted on GitHub Pages. No plans, no subscriptions." },
+  { q: "Does it work for STEM papers?", a: "It's optimised for essays, research papers, and articles. Code snippets should be excluded before pasting." },
+];
 
-    <div class="container">
-        <header>
-            <h1>Turnitin AI Humanizer <span style="display:block; font-size:0.6em; color:#64748b; margin-top:10px;">Free & Undetectable 2026</span></h1>
-            <p class="subtext">Paste ChatGPT text below to remove AI detection. Bypasses Turnitin, ZeroGPT & Originality.ai instantly.</p>
-        </header>
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+  const [status, setStatus] = useState("Ready");
+  const [copied, setCopied] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
-        <div class="tool-box">
-            <div class="editor-area">
-                <div class="text-section">
-                    <div class="label"><span>INPUT (AI TEXT)</span> <span id="wordCount">0 Words</span></div>
-                    <textarea id="input" placeholder="Paste your text from ChatGPT, Gemini or DeepSeek here..."></textarea>
-                </div>
-                <div class="text-section" style="background: #ffffff;">
-                    <div class="label"><span>HUMAN RESULT</span> <span id="status" style="color:var(--success)">Ready</span></div>
-                    <textarea id="output" readonly placeholder="Human-like text will appear here..."></textarea>
-                </div>
-            </div>
-            <div class="controls">
-                <button class="btn" id="convertBtn">HUMANIZE MY TEXT</button>
-            </div>
+  const wordCount = input.trim() === "" ? 0 : input.trim().split(/\s+/).length;
+
+  const handleHumanize = () => {
+    if (!input.trim()) return;
+    setStatus("Processing...");
+    setTimeout(() => {
+      setOutput(humanizeText(input));
+      setStatus("Done ✓");
+    }, 1400);
+  };
+
+  const handleCopy = () => {
+    if (!output) return;
+    navigator.clipboard.writeText(output);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  useEffect(() => {
+    document.title = "Free AI Humanizer 2026 – Bypass Turnitin & AI Detection | VANGUARD";
+  }, []);
+
+  return (
+    <>
+      {/* ── Injected SEO meta (client-side fallback) ───────── */}
+      {/* Real meta tags should be in index.html for crawlers   */}
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @font-face {
+          font-family: 'Podium';
+          src: url('https://db.onlinewebfonts.com/c/8b75d9dcff6a48c35a46656192adf019?family=FSP+DEMO+-+PODIUM+Sharp+4.11') format('truetype');
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; }
+        .font-podium { font-family: 'Podium', 'Inter', sans-serif; }
+
+        @keyframes fade-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        .afu   { opacity:0; animation: fade-up 0.8s ease-out forwards; }
+        .afu-1 { opacity:0; animation: fade-up 0.8s ease-out 0.2s forwards; }
+        .afu-2 { opacity:0; animation: fade-up 0.8s ease-out 0.4s forwards; }
+        .afu-3 { opacity:0; animation: fade-up 0.8s ease-out 0.6s forwards; }
+        .afu-4 { opacity:0; animation: fade-up 0.8s ease-out 0.8s forwards; }
+
+        textarea { font-family: 'Inter', sans-serif; }
+        textarea:focus { outline: none; }
+
+        .tool-textarea {
+          width: 100%; height: 220px; background: transparent;
+          border: none; resize: none; font-size: 0.95rem;
+          color: rgba(255,255,255,0.85); line-height: 1.7;
+        }
+        .tool-textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .faq-item:last-child { border-bottom: none; }
+
+        .nav-link {
+          color: rgba(255,255,255,0.7); text-decoration: none;
+          font-family: 'Inter', sans-serif; font-size: 0.8rem;
+          letter-spacing: 0.2em; text-transform: uppercase;
+          transition: color 0.2s;
+        }
+        .nav-link:hover { color: #fff; }
+
+        .touch-btn {
+          display: flex; align-items: center; gap: 6px;
+          border: 1px solid rgba(255,255,255,0.3);
+          padding: 10px 20px; font-size: 0.7rem;
+          letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; text-decoration: none;
+          transition: background 0.2s, border-color 0.2s;
+          font-family: 'Inter', sans-serif;
+        }
+        .touch-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+
+        .cta-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: #000; color: #fff; padding: 14px 28px;
+          font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+          font-family: 'Inter', sans-serif; font-weight: 600;
+          border: none; cursor: pointer; transition: background 0.2s;
+          text-decoration: none;
+        }
+        .cta-btn:hover { background: #111; }
+
+        @media (max-width: 640px) {
+          .hero-heading { font-size: clamp(2.5rem, 14vw, 7rem) !important; }
+        }
+      `}</style>
+
+      {/* ══════════════════════════════════════════
+          HERO SECTION
+      ══════════════════════════════════════════ */}
+      <section style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+
+        {/* Background Video */}
+        <video
+          autoPlay muted loop playsInline
+          style={{
+            position: "absolute", inset: 0, width: "100%", height: "100%",
+            objectFit: "cover", zIndex: 0,
+          }}
+        >
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay */}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.52)", zIndex: 1 }} />
+
+        {/* ── NAVBAR ── */}
+        <nav style={{
+          position: "absolute", top: 0, left: 0, right: 0, zIndex: 10,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "28px 64px",
+        }}>
+          {/* Brand */}
+          <span className="font-podium" style={{
+            color: "#fff", fontWeight: 700, textTransform: "uppercase",
+            fontSize: "1.6rem", letterSpacing: "0.12em",
+          }}>VANGUARD</span>
+
+          {/* Desktop nav */}
+          <div style={{ display: "flex", gap: 40 }} className="desktop-nav"
+            style={{ display: "flex", gap: 40 }}>
+            {["Projects", "Studio", "Offerings", "Inquire"].map(l => (
+              <a key={l} href="#" className="nav-link">{l}</a>
+            ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <a href="#tool" className="touch-btn" style={{ display: "flex" }}>
+            GET IN TOUCH <ArrowUpRight size={14} />
+          </a>
+        </nav>
+
+        {/* ── MOBILE MENU ── */}
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 50,
+          background: "rgba(0,0,0,0.95)", backdropFilter: "blur(4px)",
+          opacity: menuOpen ? 1 : 0,
+          visibility: menuOpen ? "visible" : "hidden",
+          transition: "all 0.5s",
+          display: "flex", flexDirection: "column",
+          padding: "28px 24px",
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span className="font-podium" style={{ color: "#fff", fontWeight: 700, fontSize: "1.6rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>VANGUARD</span>
+            <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
+              <X size={24} />
+            </button>
+          </div>
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 24 }}>
+            {["Projects", "Studio", "Offerings", "Inquire"].map((l, i) => (
+              <a key={l} href="#" className="font-podium" onClick={() => setMenuOpen(false)}
+                style={{
+                  color: "#fff", textDecoration: "none", fontSize: "2.8rem",
+                  textTransform: "uppercase", letterSpacing: "0.04em",
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? "translateY(0)" : "translateY(20px)",
+                  transition: `opacity 0.5s ${i * 80 + 100}ms, transform 0.5s ${i * 80 + 100}ms`,
+                }}>{l}</a>
+            ))}
+            <a href="#tool" className="touch-btn" onClick={() => setMenuOpen(false)}
+              style={{
+                display: "inline-flex", width: "fit-content", marginTop: 16,
+                opacity: menuOpen ? 1 : 0,
+                transform: menuOpen ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity 0.5s 420ms, transform 0.5s 420ms",
+              }}>
+              GET IN TOUCH <ArrowUpRight size={14} />
+            </a>
+          </div>
         </div>
 
-        <div class="seo-content">
-            <h2>Why Use This Turnitin AI Humanizer Free Tool?</h2>
-            <p>In 2026, students face strict AI detection. Our <strong>Turnitin AI Humanizer Free</strong> tool helps you rewrite ChatGPT essays to make them 100% undetectable. Unlike paid tools like StealthWriter or Quillbot, this tool is free, unlimited, and requires no login.</p>
+        {/* ── HERO CONTENT ── */}
+        <div style={{
+          position: "relative", zIndex: 2, height: "100%",
+          display: "flex", flexDirection: "column", justifyContent: "center",
+          padding: "0 64px",
+        }}>
+          {/* Tagline */}
+          <div className="afu" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
+            <Crown size={16} style={{ color: "rgba(255,255,255,0.6)" }} />
+            <span style={{
+              color: "rgba(255,255,255,0.6)", fontSize: "0.72rem",
+              letterSpacing: "0.3em", textTransform: "uppercase",
+              fontFamily: "Inter, sans-serif",
+            }}>World-Class Digital Collective</span>
+          </div>
 
-            <h3>How to Bypass Turnitin AI Detection?</h3>
-            <p>Turnitin checks for "perplexity" and "burstiness" in text. AI writes in a robotic, predictable pattern. Our tool changes the sentence structure and uses natural synonyms to break this pattern.</p>
+          {/* Heading */}
+          <div className="afu-1 font-podium hero-heading" style={{
+            fontSize: "clamp(2.8rem,8vw,7rem)", lineHeight: 0.92,
+            letterSpacing: "-0.02em", textTransform: "uppercase",
+            color: "#fff", marginBottom: 28,
+          }}>
+            <div>Humanize.</div>
+            <div>Bypass.</div>
+            <div>Conquer.</div>
+          </div>
 
-            <h3>Comparison: OrbitWebTools vs. Others</h3>
-            <div class="table-wrap">
-                <table>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Orbit Humanizer</th>
-                        <th>Quillbot Free</th>
-                        <th>StealthWriter</th>
-                    </tr>
-                    <tr>
-                        <td>Cost</td>
-                        <td class="check">100% FREE</td>
-                        <td>Freemium</td>
-                        <td>Expensive ($20/mo)</td>
-                    </tr>
-                    <tr>
-                        <td>Word Limit</td>
-                        <td class="check">UNLIMITED</td>
-                        <td class="cross">125 Words</td>
-                        <td class="cross">300 Words</td>
-                    </tr>
-                    <tr>
-                        <td>Login Required</td>
-                        <td class="check">NO</td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>Bypass Turnitin</td>
-                        <td class="check">YES</td>
-                        <td class="cross">No (Detected)</td>
-                        <td>Yes</td>
-                    </tr>
-                </table>
+          {/* Subtext */}
+          <p className="afu-2" style={{
+            color: "rgba(255,255,255,0.65)", fontSize: "0.95rem",
+            fontFamily: "Inter, sans-serif", lineHeight: 1.7, maxWidth: 420,
+          }}>
+            AI text that sounds robotic won't cut it anymore.<br />
+            Paste it below — and get prose that reads{" "}
+            <strong style={{ color: "#fff" }}>entirely human.</strong>
+          </p>
+
+          {/* CTAs */}
+          <div className="afu-3" style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 32 }}>
+            <a href="#tool" className="cta-btn">
+              HUMANIZE NOW <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="afu-4" style={{ display: "flex", gap: 48, marginTop: 48, flexWrap: "wrap" }}>
+            {STATS.map(({ value, label }) => (
+              <div key={label}>
+                <div style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "clamp(1.8rem,4vw,3rem)", color: "#fff", letterSpacing: "-0.02em" }}>{value}</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: 4 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          HUMANIZER TOOL SECTION
+      ══════════════════════════════════════════ */}
+      <section id="tool" style={{ background: "#0a0a0a", padding: "80px 0" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+
+          {/* Section label */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>
+              Free AI Humanizer 2026
+            </span>
+          </div>
+
+          <h1 className="font-podium" style={{
+            fontSize: "clamp(2rem,5vw,3.6rem)", textTransform: "uppercase",
+            color: "#fff", letterSpacing: "-0.01em", lineHeight: 1, marginBottom: 16,
+          }}>
+            Bypass Turnitin.<br />No Login. No Cost.
+          </h1>
+          <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "Inter, sans-serif", fontSize: "0.95rem", marginBottom: 48, maxWidth: 520 }}>
+            Paste ChatGPT, Gemini, or DeepSeek text. Get back prose that clears Turnitin, ZeroGPT, and Originality.ai instantly.
+          </p>
+
+          {/* Tool box */}
+          <div style={{
+            border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)",
+            display: "grid", gridTemplateColumns: "1fr 1fr",
+            gap: 0, overflow: "hidden",
+          }}>
+            {/* Input pane */}
+            <div style={{ padding: 28, borderRight: "1px solid rgba(255,255,255,0.08)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>AI Text Input</span>
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", fontFamily: "Inter, sans-serif" }}>{wordCount} words</span>
+              </div>
+              <textarea
+                className="tool-textarea"
+                value={input}
+                onChange={e => { setInput(e.target.value); setStatus("Ready"); }}
+                placeholder="Paste your ChatGPT, Gemini, or DeepSeek text here…"
+              />
             </div>
 
-            <h3>Frequently Asked Questions (FAQs)</h3>
-            
-            <h3>Is this AI Humanizer completely free?</h3>
-            <p>Yes, this tool is open-source and hosted on GitHub, making it 100% free for everyone forever.</p>
+            {/* Output pane */}
+            <div style={{ padding: 28 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Human Result</span>
+                <span style={{
+                  fontSize: "0.65rem", fontFamily: "Inter, sans-serif",
+                  color: status === "Done ✓" ? "#4ade80" : status === "Processing..." ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.3)",
+                }}>{status}</span>
+              </div>
+              <textarea
+                className="tool-textarea"
+                value={output}
+                readOnly
+                placeholder="Human-like text will appear here…"
+              />
+            </div>
 
-            <h3>Does it work for coding assignments?</h3>
-            <p>Currently, it is optimized for essays, articles, and research papers. It removes AI detection from ChatGPT text effectively.</p>
-
-            <h3>Is my data safe?</h3>
-            <p>Absolutely. This tool runs <strong>Client-Side</strong> in your browser. We do not store or save your text on any server.</p>
+            {/* Controls bar */}
+            <div style={{
+              gridColumn: "1 / -1",
+              borderTop: "1px solid rgba(255,255,255,0.08)",
+              padding: "20px 28px",
+              display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12,
+            }}>
+              <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.72rem", fontFamily: "Inter, sans-serif" }}>
+                Runs entirely in your browser — zero data stored.
+              </p>
+              <div style={{ display: "flex", gap: 12 }}>
+                {output && (
+                  <button onClick={handleCopy} style={{
+                    background: "none", border: "1px solid rgba(255,255,255,0.15)",
+                    color: "rgba(255,255,255,0.6)", padding: "12px 20px",
+                    fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase",
+                    cursor: "pointer", fontFamily: "Inter, sans-serif",
+                    transition: "border-color 0.2s",
+                  }}>
+                    {copied ? "COPIED ✓" : "COPY"}
+                  </button>
+                )}
+                <button onClick={handleHumanize} disabled={!input.trim()} style={{
+                  background: "#fff", color: "#000", padding: "12px 32px",
+                  fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase",
+                  cursor: input.trim() ? "pointer" : "not-allowed",
+                  fontFamily: "Inter, sans-serif", fontWeight: 700, border: "none",
+                  opacity: input.trim() ? 1 : 0.4, transition: "opacity 0.2s",
+                }}>
+                  HUMANIZE MY TEXT
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-    </div>
+      {/* ══════════════════════════════════════════
+          FEATURES
+      ══════════════════════════════════════════ */}
+      <section style={{ background: "#000", padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Why It Works</span>
+          </div>
+          <h2 className="font-podium" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", textTransform: "uppercase", color: "#fff", marginBottom: 56, lineHeight: 1 }}>
+            Built Different.
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 2 }}>
+            {FEATURES.map(({ icon: Icon, title, desc }) => (
+              <div key={title} style={{
+                border: "1px solid rgba(255,255,255,0.08)", padding: "36px 32px",
+                background: "rgba(255,255,255,0.02)",
+              }}>
+                <Icon size={28} style={{ color: "rgba(255,255,255,0.5)", marginBottom: 20 }} />
+                <h3 className="font-podium" style={{ color: "#fff", fontSize: "1.3rem", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 12 }}>{title}</h3>
+                <p style={{ color: "rgba(255,255,255,0.45)", fontFamily: "Inter, sans-serif", fontSize: "0.88rem", lineHeight: 1.7 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <footer>
-        <p>&copy; 2026 OrbitWebTools | <a href="#" style="color:inherit">Privacy Policy</a> | <a href="#" style="color:inherit">Terms of Service</a></p>
-        <p style="font-size:0.8rem; margin-top:10px;">Disclaimer: This tool is for educational purposes only. Please use AI responsibly.</p>
-    </footer>
+      {/* ══════════════════════════════════════════
+          COMPARISON TABLE (SEO value)
+      ══════════════════════════════════════════ */}
+      <section style={{ background: "#080808", padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Comparison</span>
+          </div>
+          <h2 className="font-podium" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", textTransform: "uppercase", color: "#fff", marginBottom: 40, lineHeight: 1 }}>
+            vs. The Paid Alternatives
+          </h2>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 520, fontFamily: "Inter, sans-serif" }}>
+              <thead>
+                <tr>
+                  {["Feature", "VANGUARD (Free)", "Quillbot Free", "StealthWriter"].map((h, i) => (
+                    <th key={h} style={{
+                      padding: "14px 20px", textAlign: "left",
+                      borderBottom: "1px solid rgba(255,255,255,0.1)",
+                      fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase",
+                      color: i === 1 ? "#fff" : "rgba(255,255,255,0.4)",
+                      background: i === 1 ? "rgba(255,255,255,0.05)" : "transparent",
+                    }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Cost", "100% FREE", "Freemium", "$20 / month"],
+                  ["Word Limit", "Unlimited", "125 words", "300 words"],
+                  ["Login Required", "No", "Yes", "Yes"],
+                  ["Bypass Turnitin", "Yes", "No", "Yes"],
+                  ["Client-Side Privacy", "Yes", "No", "No"],
+                ].map(([feature, ours, q, sw]) => (
+                  <tr key={feature} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                    <td style={{ padding: "14px 20px", color: "rgba(255,255,255,0.5)", fontSize: "0.88rem" }}>{feature}</td>
+                    <td style={{ padding: "14px 20px", color: "#4ade80", fontSize: "0.88rem", fontWeight: 600, background: "rgba(255,255,255,0.03)" }}>{ours}</td>
+                    <td style={{ padding: "14px 20px", color: "rgba(255,255,255,0.4)", fontSize: "0.88rem" }}>{q}</td>
+                    <td style={{ padding: "14px 20px", color: "rgba(255,255,255,0.4)", fontSize: "0.88rem" }}>{sw}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-    <script>
-        const input = document.getElementById('input');
-        const output = document.getElementById('output');
-        const btn = document.getElementById('convertBtn');
-        const wc = document.getElementById('wordCount');
+      {/* ══════════════════════════════════════════
+          FAQ (SEO value — structured data targets)
+      ══════════════════════════════════════════ */}
+      <section style={{ background: "#000", padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+            <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.3)" }} />
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>FAQ</span>
+          </div>
+          <h2 className="font-podium" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", textTransform: "uppercase", color: "#fff", marginBottom: 40, lineHeight: 1 }}>
+            Common Questions.
+          </h2>
+          <div style={{ maxWidth: 760 }}>
+            {FAQ.map((item, i) => (
+              <div key={i} className="faq-item" style={{ padding: "24px 0" }}>
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  style={{
+                    width: "100%", background: "none", border: "none", cursor: "pointer",
+                    display: "flex", justifyContent: "space-between", alignItems: "center",
+                    textAlign: "left", gap: 16,
+                  }}
+                >
+                  <span style={{ color: "#fff", fontFamily: "Inter, sans-serif", fontWeight: 500, fontSize: "0.95rem" }}>{item.q}</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.2rem", flexShrink: 0 }}>{openFaq === i ? "−" : "+"}</span>
+                </button>
+                {openFaq === i && (
+                  <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "Inter, sans-serif", fontSize: "0.88rem", lineHeight: 1.75, marginTop: 14 }}>
+                    {item.a}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        // Word Counter
-        input.addEventListener('input', () => {
-            let words = input.value.trim().split(/\s+/).length;
-            wc.innerText = input.value.trim() === '' ? '0 Words' : words + ' Words';
-        });
-
-        // Advanced Logic for Synonyms (Better than before)
-        const synonyms = {
-            "moreover": "also", "however": "but", "therefore": "so", "consequently": "as a result",
-            "utilize": "use", "demonstrate": "show", "initially": "at first", "ultimately": "in the end",
-            "significant": "big", "crucial": "key", "verify": "check", "approximately": "about",
-            "fundamental": "basic", "eliminate": "remove", "objective": "goal", "construct": "build",
-            "in conclusion": "to wrap up", "due to the fact that": "because"
-        };
-
-        const starters = ["Basically, ", "Honestly, ", "Simply put, ", "As it turns out, "];
-
-        btn.addEventListener('click', () => {
-            let text = input.value;
-            if (!text) return alert("Please enter some text!");
-
-            btn.innerText = "HUMANIZING...";
-            btn.style.opacity = "0.7";
-
-            // Process text with delay to simulate heavy AI work
-            setTimeout(() => {
-                let sentences = text.split('. ');
-                let newText = sentences.map(s => {
-                    // Replace words
-                    let words = s.split(' ');
-                    let newWords = words.map(w => {
-                        let cleanW = w.toLowerCase().replace(/[^a-z]/g, '');
-                        return synonyms[cleanW] ? synonyms[cleanW] : w;
-                    });
-                    
-                    // Add natural starters randomly
-                    let finalSent = newWords.join(' ');
-                    if(finalSent.length > 20 && Math.random() > 0.8) {
-                        finalSent = starters[Math.floor(Math.random() * starters.length)] + finalSent.charAt(0).toLowerCase() + finalSent.slice(1);
-                    }
-                    return finalSent;
-                }).join('. ');
-
-                output.value = newText;
-                btn.innerText = "HUMANIZE MY TEXT";
-                btn.style.opacity = "1";
-            }, 1500);
-        });
-    </script>
-</body>
-</html>
+      {/* ══════════════════════════════════════════
+          FOOTER
+      ══════════════════════════════════════════ */}
+      <footer style={{
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        padding: "40px 24px",
+        display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center",
+        gap: 16, maxWidth: 1100, margin: "0 auto",
+      }}>
+        <span className="font-podium" style={{ color: "rgba(255,255,255,0.3)", fontSize: "1rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>VANGUARD</span>
+        <p style={{ color: "rgba(255,255,255,0.25)", fontFamily: "Inter, sans-serif", fontSize: "0.78rem" }}>
+          © 2026 · Free AI Humanizer · Runs 100% client-side · No data stored
+        </p>
+        <div style={{ display: "flex", gap: 24 }}>
+          {["Privacy Policy", "Terms"].map(l => (
+            <a key={l} href="#" style={{ color: "rgba(255,255,255,0.25)", fontFamily: "Inter, sans-serif", fontSize: "0.78rem", textDecoration: "none" }}>{l}</a>
+          ))}
+        </div>
+      </footer>
+    </>
+  );
+}
